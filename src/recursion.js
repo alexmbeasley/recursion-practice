@@ -5,12 +5,47 @@
 // Example:  5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5);  // 120
 var factorial = function(n) {
- 
+  //base case 
+ if(n === 0){
+  return 1;
+ }
+//recursion, check if positive num
+ if(n > 0){
+  return n * factorial(n - 1);
+ }
+//return null if neg
+ return null;
 };
+
+/**
+ * BASE/FALSE
+ * RECURSE n is 5
+ *  return 5 * factorial(5 - 1)
+ * BASE/FALSE
+ * RECURSE n is 4
+ *  return 5 * 4 * facotrial(4 -1)
+ * BASE/FALSE
+ * RECURE n is 3
+ *  return 5 * 4 * 3 * factorial(3 - 1)
+ * BASE/FALSE
+ * RECURSE n is 2
+ *  return 5 * 4 * 3 * 2 * facotiral(2 -1)
+ * BASE/FALSE
+ * RECURSE n is 1
+ *  reutn 5 * 4 * 3 * 2 * 1 * factorial (1 -1)
+ * BASE/True
+ * return 1
+ * final return 5 * 4 * 3 * 2 * 1 * 1
+ * 
+ */
 
 // 2. Compute the sum of an array of integers.
 // Example:  sum([1, 2, 3, 4, 5, 6]);  // 21
 var sum = function(array) {
+  if(array.length === 0){
+    return 0;
+  }
+  return array[0] + sum(array.slice(1));
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
@@ -20,6 +55,19 @@ var arraySum = function(array) {
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+  if (n === 0){
+    return true;
+  }
+
+  if(n === 1){
+    return false;
+  }
+
+  if (n < 0){
+    return isEven(-n);
+  }
+
+  return isEven(n - 2);
 };
 
 // 5. Sum all integers below a given integer.
@@ -61,6 +109,7 @@ var palindrome = function(string) {
 // modulo(5,2) // 1
 // modulo(17,5) // 2
 // modulo(22,6) // 4
+//already done
 var modulo = function(x, y) {
   
 };
@@ -68,11 +117,13 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
+//multiply(2, 4); // 2 + 2 + 2 + 2
 var multiply = function(x, y) {
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
 // JavaScript's Math object.
+//already done
 var divide = function(x, y) {
 };
 
@@ -81,6 +132,7 @@ var divide = function(x, y) {
 // Example:  gcd(4,36);  // 4
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
+//already done
 var gcd = function(x, y) {
   
 };
@@ -90,6 +142,7 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
+
 var compareStr = function(str1, str2) {
 };
 
@@ -124,6 +177,7 @@ var rMap = function(array, callback, output=[]) {
 // var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
 // countKeysInObj(testobj, 'r') // 1
 // countKeysInObj(testobj, 'e') // 2
+//already done
 var countKeysInObj = function(obj, key) {
 };
 
@@ -131,11 +185,13 @@ var countKeysInObj = function(obj, key) {
 // var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
 // countValuesInObj(testobj, 'r') // 2
 // countValuesInObj(testobj, 'e') // 1
+//already done
 var countValuesInObj = function(obj, value) {
 };
 
 // 23. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
+//already done
 var replaceKeysInObj = function(obj, key, newKey) {
 };
 
@@ -144,6 +200,7 @@ var replaceKeysInObj = function(obj, key, newKey) {
 // Example:  0, 1, 1, 2, 3, 5, 8, 13, 21, 34.....
 // fibonacci(5);  // [0, 1, 1, 2, 3, 5]
 // Note:  The 0 is not counted.
+//already done
 var fibonacci = function(n) {
 };
 
@@ -175,11 +232,13 @@ var capitalizeFirst = function(array) {
 //   e: {e: {e: 2}, ee: 'car'}
 // };
 // nestedEvenSum(obj1); // 10
+//already done
 var nestedEvenSum = function(obj) {
 };
 
 // 29. Flatten an array containing nested arrays.
 // Example: flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
+//already done
 var flatten = function(arrays) {
 };
 
@@ -199,6 +258,7 @@ var compress = function(list) {
 // 32. Augment every element in a list with a new value where each element is an array
 // itself.
 // Example: augmentElements([[],[3],[7]], 5); // [[5],[3,5],[7,5]]
+//already done
 var augmentElements = function(array, aug) {
 };
 
