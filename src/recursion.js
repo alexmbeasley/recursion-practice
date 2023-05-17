@@ -74,12 +74,36 @@ var isEven = function(n) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  if (n === 0){
+    return 0;
+  } else if (n > 0) {
+    return n - 1 + sumBelow(n - 1);
+  } else {
+    return n + 1 + sumBelow(n + 1);
+  }
 };
 
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
-};
+    if (x === y){
+      return [];
+    } else if(x + 1 === y){
+      return [];
+    } else if(x - 1 === y){
+      return [];
+    }
+    
+    if (x < y) {
+      let arrRange = range(x + 1, y);
+      arrRange.unshift(x + 1);
+      return arrRange;
+    } else {
+      let arrRange = range(x - 1, y);
+      arrRange.unshift(x - 1);
+      return arrRange;
+    }
+  };
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
@@ -87,23 +111,57 @@ var range = function(x, y) {
 // Example:  exponent(4,3);  // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+  if (exp === 0) {
+    return 1;
+  }
+
+  if(exp < 0){
+    return 1 /exponent(base, -exp);
+  }
+  
+  return base * exponent(base, exp - 1);
 };
+
 
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  if (n === 1){
+    return true;
+  }
+
+  if (n < 1){
+    return false;
+  } 
+
+  return powerOfTwo(n / 2);
 };
 
 // 9. Write a function that accepts a string a reverses it.
 var reverse = function(string) {
+  if(string.length === 0){
+    return '';
+  }
+  return reverse(string.slice(1)) + string[0];
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  let strCap = string.toLowerCase().replace(/\s/g, '');
+    if(strCap.length === 1) {
+      return true;
+    }
+    if(strCap.length === 2) {
+      return strCap[0] === strCap[1];
+    }
+    if(strCap[0] === strCap.slice(-1)) {
+      return palindrome(strCap.slice(1,-1))
+    }
+    return false;
 };
-
+  
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
 // modulo(5,2) // 1
