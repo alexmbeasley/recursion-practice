@@ -177,6 +177,17 @@ var modulo = function(x, y) {
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 //multiply(2, 4); // 2 + 2 + 2 + 2
 var multiply = function(x, y) {
+  if (x === 0 || y === 0) {
+    return 0;
+  }
+  
+  if (y > 0) {
+    return x + multiply(x, y - 1);
+  }
+  
+  if (y < 0) {
+    return -multiply(x, -y);
+  }
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
@@ -202,32 +213,92 @@ var gcd = function(x, y) {
 // compareStr('tomato', 'tomato') // true
 
 var compareStr = function(str1, str2) {
+  //base case if the lengths are not equal return false
+ 
+  //base case if strings are empty, return true
+   if (str1 === '' && str2 === '') {
+    return true;
+  }
+  //recursion if the first element of each string is equal return, recurse through
+  if (str1[0] === str2[0]) {
+    //with each element sliced off
+    return compareStr(str1.slice(1), str2.slice(1));
+  } 
+  if (str1.length !== str2.length) {
+    return false;
+  }
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 var createArray = function(str){
+  if(str.length === 0){
+    return [];
+  } else {
+    let first = str.charAt(0);
+    let newStr = str.slice(1);
+    let newArr = createArray(newStr);
+    newArr.unshift(first);
+    return newArr;
+  }
 };
 
 // 17. Reverse the order of an array
 var reverseArr = function (array) {
+  if(array.length === 0){
+    return [];
+  } else {
+    let first = array[0];
+    let newStr = array.slice(1);
+    let newArr = reverseArr(newStr);
+    newArr.push(first);
+    return newArr;
+  }
 };
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
+  if (length === 0) {
+    return [];
+  } else {
+    let newArr = buildList(value, length - 1);
+    newArr.push(value);
+    return newArr;
+  }
 };
 
 // 19. Count the occurence of a value inside a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
 var countOccurrence = function(array, value) {
+  if(array.length === 0){
+    return 0;
+  } else {
+    let first = array[0];
+    let newArr = array.slice(1);
+    let counter = countOccurrence(newArr, value);
+    if(first === value){
+      return counter + 1;
+    } else {
+      return counter;
+    }
+  }
 };
 
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback, output=[]) {
+  if (array.length === 0){
+    return output;
+  } else {
+    let first = array[0];
+    let newArr = array.slice(1);
+    let mapped = callback(first);
+    output.push(mapped);
+    return rMap(newArr, callback, output);
+  }
   
 };
 
@@ -268,17 +339,41 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+  if (n < 0) {
+    return null;
+  } else if (n === 0) {
+    return 0;
+  } else if (n === 1) {
+    return 1;
+  } else {
+    return nthFibo(n - 1) + nthFibo(n - 2);
+  }
 };
 
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 var capitalizeWords = function(input) {
+  if (input.length === 0) {
+    return [];
+  } else {
+    var first = input[0].toUpperCase();
+    var newArr = input.slice(1);
+    return [first].concat(capitalizeWords(newArr));
+  }
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
 var capitalizeFirst = function(array) {
+  if(array.length === 0) {
+    return [];
+  } else {
+    let first = array[0];
+    let capWord = first.charAt(0).toUpperCase() + first.slice(1);
+    let newWords = array.slice(1);
+    return [capWord].concat(capitalizeFirst(newWords));
+  }
 };
 
 // 28. Return the sum of all even numbers in an object containing nested objects.
